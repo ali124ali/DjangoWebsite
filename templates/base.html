@@ -35,7 +35,7 @@
                 <div class="row align-items-center position-relative">
                     <div class="col-3">
                         <div class="site-logo">
-                            <a href="index.html"><strong>Tutor</strong></a>
+                            <a href="{% url 'website:home' %}"><strong>Tutor</strong></a>
                         </div>
                     </div>
                     <div class="col-9  text-right">
@@ -45,9 +45,9 @@
                         <nav class="site-navigation text-right ml-auto d-none d-lg-block" role="navigation">
                             <ul class="site-menu main-menu js-clone-nav ml-auto ">
                                 <li class="active"><a href="{% url 'website:home' %}" class="nav-link">Home</a></li>
-                                <li><a href="tutorials.html" class="nav-link">Tutorials</a></li>
-                                <li><a href="testimonials.html" class="nav-link">Testimonials</a></li>
-                                <li><a href="blog.html" class="nav-link">Blog</a></li>
+                                <!-- <li><a href="tutorials.html" class="nav-link">Tutorials</a></li>
+                                <li><a href="testimonials.html" class="nav-link">Testimonials</a></li> -->
+                                <li><a href="{% url 'blog:home' %}" class="nav-link">Blog</a></li>
                                 <li><a href="{% url 'website:about' %}" class="nav-link">About</a></li>
                                 <li><a href="{% url 'website:contact' %}" class="nav-link">Contact</a></li>
                             </ul>
