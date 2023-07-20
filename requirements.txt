@@ -24,3 +24,5 @@ urllib3
 webencodings
 django-environ
 django_compressor
+django-active-link
+

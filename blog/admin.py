@@ -14,7 +14,7 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ('post', 'name', 'email')
     list_filter = ('approved',)
 
-    search_fields = ('subject', 'content')
+    search_fields = ('subject', 'message')
 
 
 
