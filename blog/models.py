@@ -12,7 +12,7 @@ class Category(models.Model):
 
 
 class Post(models.Model):
-    # author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=255)
     content = models.TextField()
     image = models.ImageField(upload_to = 'images', default = 'img_1.jpg')
@@ -36,7 +36,7 @@ class Comment(models.Model):
     post = models.ForeignKey(Post,on_delete=models.CASCADE, null=False, blank=False)
     name = models.CharField(max_length=255)
     email = models.EmailField()
-    subject = models.CharField(max_length=255, null=True, blank=True)
+    content = models.TextField(null= False, blank=False)
     created_date = models.DateField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
     approved = models.BooleanField(default=False)
