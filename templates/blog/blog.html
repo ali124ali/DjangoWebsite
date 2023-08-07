@@ -22,8 +22,8 @@
 
       <div class="col-lg-4 col-md-6 mb-4">
         <div class="post-entry-1 h-100">
-          <a href="single.html" class="thumbnail-link">
-            <img src="{% static 'images/img_1.jpg' %}" alt="Image" class="img-fluid">
+          <a href="{% url 'blog:single' pid=post.id %}" class="thumbnail-link">
+            <img src="{{post.image.url}}" alt="" class="img-fluid">
           </a>
           <div class="post-entry-1-contents">
             <h2><a href="{% url 'blog:single' pid=post.id %}">{{post.title}}</a></h2>

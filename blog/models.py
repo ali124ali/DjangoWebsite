@@ -15,7 +15,7 @@ class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=255)
     content = models.TextField()
-    image = models.ImageField(upload_to = 'images', default = 'img_1.jpg')
+    image = models.ImageField(upload_to = 'blog', default = 'blog/default.jpg')
     # tag = 
     category = models.ManyToManyField(Category)
     created_date = models.DateTimeField(auto_now_add=True)
