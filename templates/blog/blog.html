@@ -36,14 +36,29 @@
 
       {% endfor %}
     </div>
+    <!-- pagination section -->
     <div class="row">
       <div class="col-5">
         <div class="custom-pagination">
-          <a href="#">1</a>
-          <span>2</span>
-          <a href="#">3</a>
-          <a href="#">4</a>
-          <a href="#">5</a>
+        
+          {% if posts.has_previous %}
+          <a href="?page=1"> << </a>
+          <a href="?page={{posts.previous_page_number}}"> < </a>
+          <a href="?page={{posts.previous_page_number}}">{{posts.previous_page_number}}</a>
+          {% endif %}
+
+          {% for i in posts.paginator.page_range %}
+            {% if posts.number == i %}
+            <span>{{i}}</span>
+            {% endif %}
+          {% endfor %}
+
+          {% if posts.has_next %}
+          <a href="?page={{posts.next_page_number}}">{{posts.next_page_number}}</a>
+          <a href="?page={{posts.next_page_number}}"> > </a>
+          <a href="?page={{posts.paginator.num_pages}}"> >> </a>
+          {% endif %}
+          
         </div>
       </div>
     </div>
