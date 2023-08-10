@@ -38,31 +38,15 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4">
+
         <div class="box small h-100">
-          <div class="d-flex align-items-center mb-2">
-            <div class="img"><img src="{% static 'images/img_2.jpg' %}" class="img-fluid" alt="Image"></div>
-            <div class="text">
-              <a href="#" class="category">Tutorial</a>
-              <h3><a href="#">Learning React Native</a></h3>
-            </div>
-          </div>
-          <div class="d-flex align-items-center mb-2">
-            <div class="img"><img src="{% static 'images/img_3.jpg' %}" class="img-fluid" alt="Image"></div>
-            <div class="text">
-              <a href="#" class="category">Tutorial</a>
-              <h3><a href="#">Learning React Native</a></h3>
-            </div>
-          </div>
-          <div class="d-flex align-items-center">
-            <div class="img"><img src="{% static 'images/img_4.jpg' %}" class="img-fluid" alt="Image"></div>
-            <div class="text">
-              <a href="#" class="category">Tutorial</a>
-              <h3><a href="#">Learning React Native</a></h3>
-            </div>
-          </div>
+          <span style="font-size: xx-large;">Today</span>
+            <h2 style="color: #0779e4; text-align: center;">{% now "l" %}</h2>
+            <h2>{% now "j" %}</h2>
+            <h2 style="color: #0779e4">{% now "F" %}</h2>
+            <h2>{% now "Y" %}</h2>
         </div>
-      </div>
+    
     </div>
   </div>
 </div>
@@ -71,54 +55,27 @@
     <div class="row">
       <div class="col">
         <div class="heading mb-4">
-          <span class="caption">Tutorial Courses</span>
-          <h2>Choose Course</h2>
+          <span class="caption">Categories</span>
+          <h2>Choose Category</h2>
         </div>
       </div>
     </div>
     <div class="row align-items-stretch">
+      {% for cat in category %}
       <div class="col-lg-2">
-        <a href="#" class="course">
+        <a href="{% url 'blog:category' cat_name=cat.name %}" class="course">
           <span class="wrap-icon brand-adobeillustrator"></span>
-          <h3>Illustrator</h3>
+          <h3>{{cat.name}}</h3>
         </a>
       </div>
-      <div class="col-lg-2">
-        <a href="#" class="course">
-          <span class="wrap-icon brand-adobephotoshop"></span>
-          <h3>Photoshop</h3>
-        </a>
-      </div>
-      <div class="col-lg-2">
-        <a href="#" class="course">
-          <span class="wrap-icon brand-angular"></span>
-          <h3>Angular</h3>
-        </a>
-      </div>
-      <div class="col-lg-2">
-        <a href="#" class="course">
-          <span class="wrap-icon brand-javascript"></span>
-          <h3>JavaScript</h3>
-        </a>
-      </div>
-      <div class="col-lg-2">
-        <a href="#" class="course">
-          <span class="wrap-icon brand-react"></span>
-          <h3>React</h3>
-        </a>
-      </div>
-      <div class="col-lg-2">
-        <a href="#" class="course">
-          <span class="wrap-icon brand-vue-dot-js"></span>
-          <h3>Vue</h3>
-        </a>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </div>
 <div class="site-section bg-light">
   <div class="container">
-    <div class="row mb-5 align-items-center">
+
+    <div class="row mb-5 align-items-left">
       <div class="col-lg-6 mb-4 mb-lg-0">
         <form action="#" class="d-flex search-form">
           <span class="icon-"></span>
@@ -126,14 +83,7 @@
           <input type="submit" class="btn btn-primary px-4" value="Search">
         </form>
       </div>
-      <div class="col-lg-6 text-lg-right">
-        <div class="d-inline-flex align-items-center ml-auto">
-          <span class="mr-4">Share:</span>
-          <a href="#" class="mx-2 social-item"><span class="icon-facebook"></span></a>
-          <a href="#" class="mx-2 social-item"><span class="icon-twitter"></span></a>
-          <a href="#" class="mx-2 social-item"><span class="icon-linkedin"></span></a>
-        </div>
-      </div>
+      
     </div>
     <!-- Latest Posts From Blog -->
     <div class="row">
@@ -163,15 +113,7 @@
           </div>
         </div>
         {% endfor %}
-        <!-- <div class="custom-pagination">
-          <ul class="list-unstyled">
-            <li><a href="#"><span>1</span></a></li>
-            <li><span>2</span></li>
-            <li><a href="#"><span>3</span></a></li>
-            <li><a href="#"><span>4</span></a></li>
-            <li><a href="#"><span>5</span></a></li>
-          </ul>
-        </div> -->
+
       </div>
       <div class="col-lg-4">
         <div class="box-side mb-3">
@@ -185,6 +127,19 @@
         <div class="box-side">
           <a href="#"><img src="{% static 'images/img_3_horizontal.jpg' %}" alt="Image" class="img-fluid"></a>
           <h3><a href="#">Learning React Native</a></h3>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-5 align-items-center">
+      <div class="col-lg-6 mb-4 mb-lg-0">
+     
+      </div>
+      <div class="col-lg-6 text-lg-right">
+        <div class="d-inline-flex align-items-center ml-auto">
+          <span class="mr-4">Share:</span>
+          <a href="#" class="mx-2 social-item"><span class="icon-facebook"></span></a>
+          <a href="#" class="mx-2 social-item"><span class="icon-twitter"></span></a>
+          <a href="#" class="mx-2 social-item"><span class="icon-linkedin"></span></a>
         </div>
       </div>
     </div>
