@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load blog_templatetags %}
+{% load humanize %}
 {% block content %}
+
 <div class="site-section-cover overlay" style="background-image: url('/static/images/hero_bg.jpg');">
   <div class="container">
       <div class="row align-items-center justify-content-center">
@@ -16,15 +18,63 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8 blog-content">
-        <h2>{{post.title}}</h2>
+        <h2>{{post.title}}</h2><br>
+        <p><img src="{{post.image.url}}" alt="" width="100%" height="500"></p><br>
         <p>{{post.content}}</p>
         <div class="pt-5">
+          <p>Author: <a href="#">{{post.author}}</a></p>
+          <p>Published Date: {{post.published_date|naturaltime}}</p>
           <p>Categories:
             {% for cat in post.category.all %}
               <a href="{% url 'blog:category' cat_name=cat.name %}">{{cat.name}}</a>
               {% if not forloop.last %},{% endif %}
             {% endfor %}</p>
+        </div><br>
+
+        <!-- next and previous posts area -->
+        <div class="navigation-area">
+					<div class="row">	
+            {% if prev != None and next != None %}
+						<div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+							<div class="thumb">
+                <a href="{% url 'blog:single' pid=prev.id %}"><p> < Previous</p></a>
+								<a href="{% url 'blog:single' pid=prev.id %}"><img class="img-fluid" src="{{prev.image.url}}" width="100" alt=""></a><br>
+                <a href="{% url 'blog:single' pid=prev.id %}"><h4>{{prev.title}}</h4></a>
+							</div>
+						</div>
+
+						<div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+							<div class="thumb">
+                <a href="{% url 'blog:single' pid=next.id %}"><p>Next ></p></a>
+								<a href="{% url 'blog:single' pid=next.id %}"><img class="img-fluid" src="{{next.image.url}}" width="100" alt=""></a><br>
+                <a href="{% url 'blog:single' pid=next.id %}"><h4>{{next.title}}</h4></a>
+							</div>										
+						</div>
+
+            {% elif next == None %}
+            <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+							<div class="thumb">
+                <a href="{% url 'blog:single' pid=prev.id %}"><p> < Previous</p></a>
+								<a href="{% url 'blog:single' pid=prev.id %}"><img class="img-fluid" src="{{prev.image.url}}" width="100" alt=""></a><br>
+                <a href="{% url 'blog:single' pid=prev.id %}"><h4>{{prev.title}}</h4></a>
+							</div>
+						</div>
+            {% elif prev == None %}
+            <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+						</div>
+            <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+							<div class="thumb">
+                <a href="{% url 'blog:single' pid=next.id %}"><p>Next ></p></a>
+								<a href="{% url 'blog:single' pid=next.id %}"><img class="img-fluid" src="{{next.image.url}}" width="100" alt=""></a><br>
+                <a href="{% url 'blog:single' pid=next.id %}"><h4>{{next.title}}</h4></a>
+							</div>										
+						</div>
+
+            {% endif %}	
+          </div>
         </div>
+					
+        <!-- comment area -->
         <div class="pt-5">
           <h3 class="mb-5">6 Comments</h3>
           <ul class="comment-list">
@@ -151,11 +201,12 @@
           </form>
         </div>
 
-        <!-- list exist category name and its count -->
+        <!-- list exist category name and its count load from blog_templatetags -->
         <div class="sidebar-box">
           <div class="categories">
             <h3>Categories</h3>
-            {% for name, count in categories.items %}
+            {% catcounter as categories %}
+            {% for name, count in categories %}
             <li><a href="{% url 'blog:category' cat_name=name %}">{{name}}<span>({{count}})</span></a></li>
             {% endfor %}
           </div>

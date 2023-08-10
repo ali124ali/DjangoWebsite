@@ -1,16 +1,16 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Post, Comment, Category
+from .models import Post, Comment
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage, InvalidPage
 from datetime import datetime
 
-
+# view for blog home page
 def blog_view(request, **kwargs):
-    posts = Post.objects.filter(status=True, published_date__lte=datetime.now()).order_by('-published_date')
+    posts = Post.objects.filter(status=1, published_date__lte=datetime.now()).order_by('-published_date')
 
     if kwargs.get('cat_name') != None:
         posts = Post.objects.filter(status = 1, category__name = kwargs['cat_name'])
 
-    # create pagination of blog
+    # create pagination of blog posts
     posts = Paginator(posts, 3)
 
     try:
@@ -29,21 +29,29 @@ def blog_view(request, **kwargs):
     content = {'posts' : posts}
     return render(request, 'blog/blog.html', content)
 
+# view for blog single page
 def blog_single_view(request, pid):
+    posts = Post.objects.filter(status=1, published_date__lte=datetime.now()).order_by('-published_date')
+    posts = list(posts)
     post = get_object_or_404(Post, status=1, id=pid)
-    # posts_cat = Post.
-    category = Category.objects.all()
-    categories = {}
-    for cat in category:
-        if cat.name not in categories:
-            categories[cat.name] = 1
-        
-        else:
-            categories[cat.name] += 2
 
-    content = {'post':post, 'categories':categories}
+    index = posts.index(post)
+    if index == 0:
+        prev = None
+        next = posts[index + 1]
+    
+    elif index == len(posts) - 1:
+        next = None
+        prev = posts[index - 1]
+
+    else:
+        next = posts[index + 1]
+        prev = posts[index - 1]
+
+    content = {'post':post, 'next':next, 'prev': prev}
     return render(request, 'blog/single.html', content)
 
+# search field in blog page
 def search_view(request):
     posts = Post.objects.filter(status=1)
 

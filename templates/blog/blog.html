@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load blog_templatetags %}
 {% block content %}
 {% load humanize %}
 
@@ -10,6 +10,7 @@
           <div class="col-lg-10 text-center">
               <h1><strong>Blog</strong></h1>
               <p><strong><a href="{% url 'website:home' %}">Home</a> / Blog</strong></p>
+              <p>Published Posts: {% totalposts %}</p>
           </div>
       </div>
   </div>
@@ -60,6 +61,7 @@
           {% endif %}
           
         </div>
+     
       </div>
     </div>
   </div>
