@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from taggit.managers import TaggableManager
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
@@ -16,7 +17,7 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField()
     image = models.ImageField(upload_to = 'blog', default = 'blog/default.jpg')
-    # tag = 
+    tags = TaggableManager()
     category = models.ManyToManyField(Category)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)

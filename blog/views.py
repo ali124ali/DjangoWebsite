@@ -10,6 +10,8 @@ def blog_view(request, **kwargs):
     if kwargs.get('cat_name') != None:
         posts = Post.objects.filter(status = 1, category__name = kwargs['cat_name'])
 
+    if kwargs.get('tag_name') != None:
+        posts = Post.objects.filter(status = 1, tags__name = kwargs['tag_name'])
     # create pagination of blog posts
     posts = Paginator(posts, 6)
 
