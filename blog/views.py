@@ -11,7 +11,7 @@ def blog_view(request, **kwargs):
         posts = Post.objects.filter(status = 1, category__name = kwargs['cat_name'])
 
     # create pagination of blog posts
-    posts = Paginator(posts, 3)
+    posts = Paginator(posts, 6)
 
     try:
         page_number = request.GET.get("page")
@@ -51,7 +51,7 @@ def blog_single_view(request, pid):
     if post:
         post.view_count += 1
         post.save()
-        
+
     content = {'post':post, 'next':next, 'prev': prev}
     return render(request, 'blog/single.html', content)
 
