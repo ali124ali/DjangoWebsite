@@ -5,9 +5,9 @@ from website.forms import ContactForm
 from django.contrib import messages
 
 def home_view(request):
-    posts = Post.objects.filter(status=1, published_date__lte=datetime.now()).order_by("-published_date")[:3]
+    posts = Post.objects.filter(status=1, published_date__lte=datetime.now())[:3]
     fav_posts = Post.objects.filter(status=1, published_date__lte=datetime.now()).order_by("-view_count")[:3]
-    future = Post.objects.filter(status=1, published_date__gt=datetime.now()).order_by("-published_date")[:1]
+    future = Post.objects.filter(status=1, published_date__gt=datetime.now())[:1]
 
     if not future:
         future = None

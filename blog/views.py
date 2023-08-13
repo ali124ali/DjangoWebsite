@@ -5,7 +5,7 @@ from datetime import datetime
 
 # view for blog home page
 def blog_view(request, **kwargs):
-    posts = Post.objects.filter(status=1, published_date__lte=datetime.now()).order_by('-published_date')
+    posts = Post.objects.filter(status=1, published_date__lte=datetime.now())
 
     if kwargs.get('cat_name') != None:
         posts = Post.objects.filter(status = 1, category__name = kwargs['cat_name'])
@@ -33,7 +33,7 @@ def blog_view(request, **kwargs):
 
 # view for blog single page
 def blog_single_view(request, pid):
-    posts = Post.objects.filter(status=1, published_date__lte=datetime.now()).order_by('-published_date')
+    posts = Post.objects.filter(status=1, published_date__lte=datetime.now())
     posts = list(posts)
     post = get_object_or_404(Post, status=1, id=pid)
 

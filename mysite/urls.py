@@ -38,6 +38,7 @@ urlpatterns = [
         name="django.contrib.sitemaps.views.sitemap",
     ),
     re_path(r'^robots\.txt', include('robots.urls')),
+    path('summernote/', include('django_summernote.urls')),
 
 ]
 
