@@ -48,6 +48,10 @@ def blog_single_view(request, pid):
         next = posts[index + 1]
         prev = posts[index - 1]
 
+    if post:
+        post.view_count += 1
+        post.save()
+        
     content = {'post':post, 'next':next, 'prev': prev}
     return render(request, 'blog/single.html', content)
 

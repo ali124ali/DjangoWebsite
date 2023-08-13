@@ -23,6 +23,7 @@
         <p>{{post.content}}</p>
         <div class="pt-5">
           <p>Author: <a href="#">{{post.author}}</a></p>
+          <p>View: {{post.view_count}}</p>
           <p>Published Date: {{post.published_date|naturaltime}}</p>
           <p>Categories:
             {% for cat in post.category.all %}

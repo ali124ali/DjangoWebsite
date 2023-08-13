@@ -1,16 +1,15 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load humanize %}
-
-
 {% block content %}
+
 <div class="site-section-cover overlay" style="background-image: url('/static/images/hero_bg.jpg');">
   <div class="container">
-      <div class="row align-items-center justify-content-center">
-          <div class="col-lg-10 text-center">
-              <h1>The <strong>Ali Dehkhodaei</strong></h1>
-          </div>
+    <div class="row align-items-center justify-content-center">
+      <div class="col-lg-10 text-center">
+        <h1>The <strong>Ali Dehkhodaei</strong></h1>
       </div>
+    </div>
   </div>
 </div>
 <div class="site-section bg-light pb-0">
@@ -18,63 +17,51 @@
     <div class="row align-items-stretch overlap">
       <div class="col-lg-8">
         <div class="box h-100">
+          <!-- future comming post -->
           <div class="d-flex align-items-center">
+            {% if future != None %}
+              {% for item in future %}
+            <div class="img"><img src="{{item.image.url}}" class="img-fluid" alt="Image"></div>
+            <div class="text">
+              <p style="font-size: large;">Comming Soon...</p>
+              <h3>{{item.title}}</h3>
+              <p class="meta">
+                <span class="mr-2 mb-2">{{item.content|truncatewords:10}}</span>
+                <hr>
+                {% for c in item.category.all %}
+                <span class="mr-2 mb-2">{{c}}</span>
+                {% endfor %}
+                <hr>
+                <span class="mr-2 mb-2">{{item.published_date|naturaltime}}</span>
+              </p>
+              {% endfor %}
+            {% else %}
             <div class="img"><img src="{% static 'images/img_1.jpg' %}" class="img-fluid" alt="Image"></div>
             <div class="text">
-              <a href="#" class="category">Tutorial</a>
-              <h3><a href="#">Learning React Native</a></h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum quidem totam exercitationem eveniet
-                blanditiis nulla, et possimus, itaque alias maxime!</p>
-              <p class="mb-0">
-                <span class="brand-react h5"></span>
-                <span class="brand-javascript h5"></span>
-              </p>
-              <p class="meta">
-                <span class="mr-2 mb-2">1hr 24m</span>
-                <span class="mr-2 mb-2">Advanced</span>
-                <span class="mr-2 mb-2">Jun 18, 2020</span>
-              </p>
+              <p style="font-size: large;">Sorry There's No New Posts in Queue :(<hr>But You Can See Our Published</p>
+            {% endif %}
             </div>
           </div>
         </div>
       </div>
+      <!-- today time and date -->
+      <div class="box small h-150" style="text-align: center;">
+        <span style="font-size: xx-large;">Today</span>
+        <hr>
+        <h2 style="color: #0779e4;">{% now "l" %}</h2>
+        <h2>{% now "j" %}</h2>
+        <h2 style="color: #0779e4">{% now "F" %}</h2>
+        <h2>{% now "Y" %}</h2>
+      </div>
 
-        <div class="box small h-100">
-          <span style="font-size: xx-large;">Today</span>
-            <h2 style="color: #0779e4; text-align: center;">{% now "l" %}</h2>
-            <h2>{% now "j" %}</h2>
-            <h2 style="color: #0779e4">{% now "F" %}</h2>
-            <h2>{% now "Y" %}</h2>
-        </div>
-    
     </div>
   </div>
 </div>
-<div class="site-section">
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <div class="heading mb-4">
-          <span class="caption">Categories</span>
-          <h2>Choose Category</h2>
-        </div>
-      </div>
-    </div>
-    <div class="row align-items-stretch">
-      {% for cat in category %}
-      <div class="col-lg-2">
-        <a href="{% url 'blog:category' cat_name=cat.name %}" class="course">
-          <span class="wrap-icon brand-adobeillustrator"></span>
-          <h3>{{cat.name}}</h3>
-        </a>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-</div>
+
 <div class="site-section bg-light">
   <div class="container">
 
+    <!-- search field -->
     <div class="row mb-5 align-items-left">
       <div class="col-lg-6 mb-4 mb-lg-0">
         <form action="#" class="d-flex search-form">
@@ -83,29 +70,34 @@
           <input type="submit" class="btn btn-primary px-4" value="Search">
         </form>
       </div>
-      
+
     </div>
     <!-- Latest Posts From Blog -->
     <div class="row">
-      <div class="col-12">
-        <div class="heading mb-4">
+      <div class="col-12" style="display:inline-flex; justify-content: space-between;">
+        <div class="heading mb-4" style="display:inline-flex; float: right;">
+          <span class="caption">Popular</span>
+          <h2>Posts</h2>
+        </div>
+        <div class="heading mb-4" style="display:inline-flex; float: left;">
           <span class="caption">Latest</span>
           <h2>Posts</h2>
         </div>
+
       </div>
+
+      <!-- popular posts -->
       <div class="col-lg-8">
-        {% for post in posts %}
+        {% for post in fave_posts %}
         <div class="d-flex tutorial-item mb-4">
           <div class="img-wrap">
-            <a href="#"><img src="{{post.image.url}}" alt="Image" class="img-fluid"></a>
+            <a href="{% url 'blog:single' pid=post.id %}"><img src="{{post.image.url}}" alt="Image"
+                class="img-fluid"></a>
           </div>
           <div>
-            <h3><a href="#">{{post.title}}</a></h3>
+            <h3><a href="{% url 'blog:single' pid=post.id %}">{{post.title}}</a></h3>
             <p>{{post.content|truncatewords:50}}</p>
-            <p class="mb-0">
-              <span class="brand-react h5"></span>
-              <span class="brand-javascript h5"></span>
-            </p>
+            <hr>
             <p class="meta">
               <span class="mr-2 mb-2">{{post.published_date|naturalday}}</span>
             </p>
@@ -113,26 +105,45 @@
           </div>
         </div>
         {% endfor %}
-
       </div>
+
+      <!-- latest posts -->
       <div class="col-lg-4">
-        <div class="box-side mb-3">
-          <a href="#"><img src="{% static 'images/img_1_horizontal.jpg' %}" alt="Image" class="img-fluid"></a>
-          <h3><a href="#">Learning React Native</a></h3>
+        {% for post in posts %}
+        <div class="box-side mb-3" style="width: 100%; height: 332px;">
+          <a href="{% url 'blog:single' pid=post.id %}"><img src="{{post.image.url}}" alt="Image" class="center"
+              style="width: 100%; height: 200px;"></a>
+          <h3><a href="#" style="font-size: 16px;">{{post.title}}</a></h3>
+          <p>{{post.published_date|naturaltime}}</p>
         </div>
-        <div class="box-side mb-3">
-          <a href="#"><img src="{% static 'images/img_2_horizontal.jpg' %}" alt="Image" class="img-fluid"></a>
-          <h3><a href="#">Learning React Native</a></h3>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div class="heading mb-4">
+              <span class="caption">Categories</span>
+              <h2>Choose Category</h2>
+            </div>
+          </div>
         </div>
-        <div class="box-side">
-          <a href="#"><img src="{% static 'images/img_3_horizontal.jpg' %}" alt="Image" class="img-fluid"></a>
-          <h3><a href="#">Learning React Native</a></h3>
+        <div class="row align-items-stretch">
+          {% for cat in category %}
+          <div class="col-lg-2">
+            <a href="{% url 'blog:category' cat_name=cat.name %}" class="course">
+              <span class="wrap-icon brand-adobeillustrator"></span>
+              <h3>{{cat.name}}</h3>
+            </a>
+          </div>
+          {% endfor %}
         </div>
       </div>
     </div>
+    <!-- share icons -->
     <div class="row mb-5 align-items-center">
       <div class="col-lg-6 mb-4 mb-lg-0">
-     
       </div>
       <div class="col-lg-6 text-lg-right">
         <div class="d-inline-flex align-items-center ml-auto">
@@ -145,13 +156,14 @@
     </div>
   </div>
 </div>
+<!-- latest comments -->
 <div class="site-section bg-light">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-7 text-center mb-5">
         <div class="heading">
-          <span class="caption">Testimonials</span>
-          <h2>Student Reviews</h2>
+          <span class="caption">Users Recent</span>
+          <h2>Comments</h2>
         </div>
       </div>
     </div>
