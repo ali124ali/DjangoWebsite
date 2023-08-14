@@ -42,7 +42,7 @@ class Comment(models.Model):
     name = models.CharField(max_length=255)
     email = models.EmailField()
     message = models.TextField(null= False, blank=False)
-    created_date = models.DateField(auto_now_add=True)
+    created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
     approved = models.BooleanField(default=False)
 

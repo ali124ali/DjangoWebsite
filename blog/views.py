@@ -2,6 +2,9 @@ from django.shortcuts import render, get_object_or_404
 from .models import Post, Comment
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage, InvalidPage
 from datetime import datetime
+from blog.forms import CommentForm
+from django.contrib import messages
+
 
 # view for blog home page
 def blog_view(request, **kwargs):
@@ -33,9 +36,22 @@ def blog_view(request, **kwargs):
 
 # view for blog single page
 def blog_single_view(request, pid):
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, messages.SUCCESS, 'Your Comment Has Sent Succussfully and Will Published ASAP')
+        else:
+            messages.add_message(request, messages.ERROR, 'Somthing Wrong, Please Check Your Info Again.')
+
+    form = CommentForm()
+
     posts = Post.objects.filter(status=1, published_date__lte=datetime.now())
     posts = list(posts)
     post = get_object_or_404(Post, status=1, id=pid)
+    comments = Comment.objects.filter(approved=1, post=pid)
+    comments_count = comments.count()
 
     index = posts.index(post)
     if index == 0:
@@ -54,7 +70,7 @@ def blog_single_view(request, pid):
         post.view_count += 1
         post.save()
 
-    content = {'post':post, 'next':next, 'prev': prev}
+    content = {'post':post, 'next':next, 'prev': prev, 'comments':comments, 'comments_count':comments_count ,'form':form}
     return render(request, 'blog/single.html', content)
 
 # search field in blog page

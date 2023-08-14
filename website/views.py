@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from blog.models import Post, Category
+from blog.models import Post, Category, Comment
 from datetime import datetime
 from website.forms import ContactForm
 from django.contrib import messages
@@ -8,6 +8,7 @@ def home_view(request):
     posts = Post.objects.filter(status=1, published_date__lte=datetime.now())[:3]
     fav_posts = Post.objects.filter(status=1, published_date__lte=datetime.now()).order_by("-view_count")[:3]
     future = Post.objects.filter(status=1, published_date__gt=datetime.now())[:1]
+    comments = Comment.objects.filter(approved=1)[:3]
 
     if not future:
         future = None
@@ -15,7 +16,7 @@ def home_view(request):
     category = Category.objects.all()
 
 
-    content = {'posts' : posts, 'category' : category, 'fave_posts' : fav_posts, 'future':future}
+    content = {'posts' : posts, 'category' : category, 'fave_posts' : fav_posts, 'future':future, 'comments':comments}
     return render(request, 'website/index.html', content)
 
 def contact_view(request):

@@ -45,6 +45,60 @@ SITE_ID = 2
 ROBOTS_USE_HOST = False
 ROBOTS_USE_SITEMAP = False
 
+# summernote configs
+SUMMERNOTE_THEME = 'bs4' 
+
+SUMMERNOTE_CONFIG = {
+    # Using SummernoteWidget - iframe mode, default
+    'iframe': True,
+
+    # You can put custom Summernote settings
+    'summernote': {
+        # As an example, using Summernote Air-mode
+        'airMode': False,
+
+        # Change editor size
+        'width': '100%',
+        'height': '480',
+
+        # Use proper language setting automatically (default)
+        'lang': None,
+
+        # Toolbar customization
+        # https://summernote.org/deep-dive/#custom-toolbar-popover
+        'toolbar': [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['fontname', ['fontname']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']],
+        ],
+
+        # Or, explicitly set language/locale for editor
+        'lang': 'en',
+        
+    },
+
+    # Require users to be authenticated for uploading attachments.
+    'attachment_require_authentication': True,
+
+    # You can completely disable the attachment feature.
+    'disable_attachment': False,
+
+    # Set to `True` to return attachment paths in absolute URIs.
+    'attachment_absolute_uri': False,
+
+    # Lazy initialization
+    # If you want to initialize summernote at the bottom of page, set this as True
+    # and call `initSummernote()` on your page.
+    'lazy': True,
+}
+
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
