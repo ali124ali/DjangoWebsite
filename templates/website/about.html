@@ -20,8 +20,8 @@
       </div>
       <div class="col-lg-4 mr-auto">
         <div class="heading mb-4">
-          <span class="caption">About us</span>
-          <h2>Our Company</h2>
+          <!-- <span class="caption">About us</span> -->
+          <h2>About Us</h2>
         </div>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit suscipit, repudiandae similique
           accusantium eius nulla quam laudantium sequi.</p>
@@ -42,66 +42,18 @@
       </div>
     </div>
     <div class="row align-items-stretch">
-      <div class="col-lg-4 col-md-6 mb-5">
-        <div class="post-entry-1 h-100 person-1">
-          <img src="{% static 'images/person_1.jpg' %}" alt="Image" class="img-fluid">
-          <div class="post-entry-1-contents">
-            <span class="meta">Founder</span>
-            <h2>James Doe</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, sapiente.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6 mb-5">
-        <div class="post-entry-1 h-100 person-1">
-          <img src="{% static 'images/person_2.jpg' %}" alt="Image" class="img-fluid">
-          <div class="post-entry-1-contents">
-            <span class="meta">Founder</span>
-            <h2>James Doe</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, sapiente.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6 mb-5">
-        <div class="post-entry-1 h-100 person-1">
-          <img src="{% static 'images/person_3.jpg' %}" alt="Image" class="img-fluid">
-          <div class="post-entry-1-contents">
-            <span class="meta">Founder</span>
-            <h2>James Doe</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, sapiente.</p>
-          </div>
-        </div>
-      </div>
+      {% for founder in founders %}
       <div class="col-lg-4 col-md-6 mb-5">
         <div class="post-entry-1 h-100 person-1">
           <img src="{% static 'images/person_4.jpg' %}" alt="Image" class="img-fluid">
           <div class="post-entry-1-contents">
             <span class="meta">Founder</span>
-            <h2>James Doe</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, sapiente.</p>
+            <h2>{{founder.email}}</h2>
+            <p>It's about three years that i've started programming.</p>
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-6 mb-5">
-        <div class="post-entry-1 h-100 person-1">
-          <img src="{% static 'images/person_5.jpg' %}" alt="Image" class="img-fluid">
-          <div class="post-entry-1-contents">
-            <span class="meta">Founder</span>
-            <h2>James Doe</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, sapiente.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6 mb-5">
-        <div class="post-entry-1 h-100 person-1">
-          <img src="{% static 'images/person_1.jpg' %}" alt="Image" class="img-fluid">
-          <div class="post-entry-1-contents">
-            <span class="meta">Founder</span>
-            <h2>James Doe</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, sapiente.</p>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </div>

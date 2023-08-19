@@ -30,14 +30,19 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('website.urls')),
     path('blog/', include('blog.urls')),
+    path('accounts/', include('accounts.urls')),
+    # debug toolbar module
     path("__debug__/", include("debug_toolbar.urls")),
+    # sitemap.xml
     path(
         "sitemap.xml",
         sitemap,
         {"sitemaps": sitemaps},
         name="django.contrib.sitemaps.views.sitemap",
     ),
+    # robots.txt
     re_path(r'^robots\.txt', include('robots.urls')),
+    # summernote module
     path('summernote/', include('django_summernote.urls')),
 
 ]

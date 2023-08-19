@@ -79,7 +79,9 @@ def search_view(request):
 
     if request.method == 'GET':
         if s := request.GET.get('s'):
-            posts = posts.filter(content__contains = s)
+            posts = posts.filter(content__contains=s)
+        else:
+            posts = None
 
     content = {'posts' : posts}
     return render(request, 'blog/single.html', content)

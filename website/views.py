@@ -3,6 +3,7 @@ from blog.models import Post, Category, Comment
 from datetime import datetime
 from website.forms import ContactForm
 from django.contrib import messages
+from accounts.models import User
 
 def home_view(request):
     posts = Post.objects.filter(status=1, published_date__lte=datetime.now())[:3]
@@ -33,4 +34,6 @@ def contact_view(request):
     return render(request, 'website/contact.html')
 
 def about_view(request):
-    return render(request, 'website/about.html')
+    founders = User.objects.filter(is_active=True, is_staff=True, is_superuser=True)
+    content = {"founders" : founders}
+    return render(request, 'website/about.html', content)
