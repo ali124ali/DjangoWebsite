@@ -41,7 +41,8 @@
 				</div>
 
 				<form class="login100-form validate-form">
-					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+          {% csrf_token %}
+					<!-- <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
 						<span class="label-input100">Username</span>
 						<input class="input100" type="text" name="username" placeholder="Enter Username">
 						<span class="focus-input100"></span>
@@ -56,19 +57,32 @@
 						<span class="label-input100">Last Name</span>
 						<input class="input100" type="text" name="lastname" placeholder="Enter Last Name">
 						<span class="focus-input100"></span>
-					</div>
+					</div> -->
 					<div class="wrap-input100 validate-input m-b-18" data-validate = "Email is required">
 						<span class="label-input100">Email</span>
-						<input class="input100" type="email" name="pass" placeholder="Enter Email">
+						<input class="input100" type="email" name="email" placeholder="Enter Email">
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-18" data-validate = "Email is required">
+						<span class="label-input100">Password</span>
+						<input class="input100" type="password" name="password" placeholder="Enter Password">
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 validate-input m-b-18" data-validate = "Email is required">
+						<span class="label-input100">Confirm Password</span>
+						<input class="input100" type="password" name="password2" placeholder="Enter Password Again">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn" style="background-color: #0779e4;">
+						<button type="submit" class="login100-form-btn" style="background-color: #0779e4;">
 							Sign up
 						</button>
-					</div>
+          </div>
+          <p><br><a href="{% url 'website:home' %}">Back Home</a></p>
 				</form>
+
+        
 			</div>
 		</div>
 	</div>

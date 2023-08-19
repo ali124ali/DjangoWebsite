@@ -76,6 +76,7 @@
     </div>
   </div>
 </div>
+{% if not request.user.is_authenticated %}
 <div class="site-section bg-primary py-5 cta">
   <div class="container">
     <div class="row align-items-center">
@@ -84,9 +85,10 @@
         <p class="mb-0 opa-7">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, laboriosam.</p>
       </div>
       <div class="col-lg-5 text-md-right">
-        <a href="#" class="btn btn-primary btn-white">Enroll Now</a>
+        <a href="{% url 'accounts:login' %}" class="btn btn-primary btn-white">Login Now</a>
       </div>
     </div>
   </div>
 </div>
+{% endif %}
 {% endblock %}
