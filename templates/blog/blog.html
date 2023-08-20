@@ -30,7 +30,7 @@
             <h2 style="font-size: large;"><a href="{% url 'blog:single' pid=post.id %}">{{post.title|truncatewords:5|safe}}</a></h2><hr>
             <p>{{post.content|truncatewords:40}}</p><hr>
             <span class="meta d-inline-block mb-3">{{post.published_date|naturalday}}<span class="mx-2">by</span> <a
-                href="#">{{post.author}}</a></span>
+                href="{% url 'blog:author' author_name=post.author.username %}">{{post.author}}</a></span>
           </div>
         </div>
       </div>

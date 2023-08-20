@@ -41,8 +41,8 @@
             <div>
               <P>
                 {% if request.user.is_authenticated %}
-                Loged In as (<a href="#"> {{request.user.email}} </a>)
-                <a href="{% url 'accounts:logout' %}">Log Out</a>
+                Loged In as (<a href="#"> {{request.user.username}} </a>)
+                <br><a href="{% url 'accounts:logout' %}">Log Out</a>
                 {% else %}
         
                 <a href="{% url 'accounts:login' %}">Log In</a>

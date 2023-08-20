@@ -11,10 +11,13 @@ def blog_view(request, **kwargs):
     posts = Post.objects.filter(status=1, published_date__lte=datetime.now())
 
     if kwargs.get('cat_name') != None:
-        posts = Post.objects.filter(status = 1, category__name = kwargs['cat_name'])
+        posts = Post.objects.filter(status = 1, published_date__lte=datetime.now(), category__name = kwargs['cat_name'])
 
     if kwargs.get('tag_name') != None:
-        posts = Post.objects.filter(status = 1, tags__name = kwargs['tag_name'])
+        posts = Post.objects.filter(status = 1, published_date__lte=datetime.now(), tags__name = kwargs['tag_name'])
+
+    if kwargs.get('author_name') != None:
+        posts = Post.objects.filter(status = 1, published_date__lte=datetime.now(), author__username = kwargs['author_name'])
     # create pagination of blog posts
     posts = Paginator(posts, 6)
 
