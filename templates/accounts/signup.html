@@ -2,24 +2,26 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<title>Signup</title>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">	
-	<link rel="icon" type="image/png" href="{% static 'imagesicons/favicon.ico' %}"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="{% static 'imagesicons/favicon.ico' %}" />
 	<link rel="stylesheet" type="text/css" href="{% static 'vendorbootstrap/css/bootstrap.min.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'vendoranimate/animate.css' %}">	
+	<link rel="stylesheet" type="text/css" href="{% static 'vendoranimate/animate.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'vendorcss-hamburgers/hamburgers.min.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'vendoranimsition/css/animsition.min.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'vendorselect2/select2.min.css' %}">	
+	<link rel="stylesheet" type="text/css" href="{% static 'vendorselect2/select2.min.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'vendordaterangepicker/daterangepicker.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 </head>
+
 <body>
-	
+
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
@@ -29,8 +31,8 @@
 					</span>
 				</div>
 
-				<form class="login100-form validate-form"  action="" method="POST">
-          			{% csrf_token %}
+				<form class="login100-form validate-form" action="" method="POST">
+					{% csrf_token %}
 
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
 						<span class="label-input100">Username</span>
@@ -38,45 +40,50 @@
 						<span class="focus-input100"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input m-b-18" data-validate = "Firstname is required">
+					<div class="wrap-input100 validate-input m-b-18" data-validate="Firstname is required">
 						<span class="label-input100">First Name</span>
 						<input class="input100" type="text" name="firstname" placeholder="Enter First Name">
 						<span class="focus-input100"></span>
 					</div>
-					<div class="wrap-input100 validate-input m-b-18" data-validate = "Lastname is required">
+					<div class="wrap-input100 validate-input m-b-18" data-validate="Lastname is required">
 						<span class="label-input100">Last Name</span>
 						<input class="input100" type="text" name="lastname" placeholder="Enter Last Name">
 						<span class="focus-input100"></span>
 					</div>
-					<div class="wrap-input100 validate-input m-b-18" data-validate = "Email is required">
+					<div class="wrap-input100 validate-input m-b-18" data-validate="Email is required">
 						<span class="label-input100">Email</span>
 						<input class="input100" type="email" name="email" placeholder="Enter Email">
 						<span class="focus-input100"></span>
 					</div>
-					<div class="wrap-input100 validate-input m-b-18" data-validate = "Email is required">
+					<div class="wrap-input100 validate-input m-b-18" data-validate="Email is required">
 						<span class="label-input100">Password</span>
 						<input class="input100" type="password" name="password1" placeholder="Enter Password">
 						<span class="focus-input100"></span>
 					</div>
-					<div class="wrap-input100 validate-input m-b-18" data-validate = "Email is required">
+					<div class="wrap-input100 validate-input m-b-18" data-validate="Email is required">
 						<span class="label-input100">Confirm Password</span>
 						<input class="input100" type="password" name="password2" placeholder="Enter Password Again">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="container-login100-form-btn">
-						<a href=""><input type="submit" class="login100-form-btn" style="background-color: #0779e4;"></a>
+						<a href=""><input type="submit" class="login100-form-btn"
+								style="background-color: #0779e4;"></a>
 					</div>
-							
-						
-          <p><br><a href="{% url 'website:home' %}">Back Home</a></p>
-				</form>
 
-        
+
+					<p>
+						<br><a href="{% url 'website:home' %}">Back Home</a>
+					</p>
+					<p>
+						<br>Already Have An Account?
+						<a href="{% url 'accounts:login' %}">&nbsp;Log In</a>
+					</p>
+				</form>
 			</div>
 		</div>
 	</div>
-	
+
 	<script src="{% static 'vendorjquery/jquery-3.2.1.min.js' %}"></script>
 	<script src="{% static 'vendoranimsition/js/animsition.min.js' %}"></script>
 	<script src="{% static 'vendorbootstrap/js/popper.js' %}"></script>
@@ -88,4 +95,5 @@
 	<script src="{% static 'js/main.js' %}"></script>
 
 </body>
+
 </html>

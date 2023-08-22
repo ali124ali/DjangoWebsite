@@ -44,6 +44,8 @@ urlpatterns = [
     re_path(r'^robots\.txt', include('robots.urls')),
     # summernote module
     path('summernote/', include('django_summernote.urls')),
+    # need this line for reset password with email with django auth views
+    path('', include('django.contrib.auth.urls')),
 
 ]
 
