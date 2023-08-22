@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
+from django.contrib.auth.forms import PasswordChangeForm, AuthenticationForm
 from accounts.forms import CustomUserCreationForm
 
 def login_view(request):
     if not request.user.is_authenticated:
         if request.method == "POST":
             form = AuthenticationForm(request=request, data=request.POST)
+            
             if form.is_valid():
                 username = request.POST['username']
                 password = request.POST['password']
