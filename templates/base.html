@@ -43,6 +43,7 @@
                 {% if request.user.is_authenticated %}
                 Loged In as (<a href="#"> {{request.user.username}} </a>)
                 <br><a href="{% url 'accounts:logout' %}">Log Out</a>
+                / <a href="{% url 'accounts:change' %}">Change Password</a>
                 {% else %}
         
                 <a href="{% url 'accounts:login' %}">Log In</a>

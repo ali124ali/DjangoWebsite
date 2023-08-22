@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from accounts.forms import CustomUserCreationForm
 
 def login_view(request):
@@ -49,5 +49,30 @@ def signup_view(request):
         content = {"form" : form}
         return render(request, 'accounts/signup.html', content)
     
+    else:
+        return redirect('/')
+
+@login_required
+def change_pass(request):
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            form = PasswordChangeForm(user=request.user, data=request.POST)
+
+            if form.is_valid():
+                form.save()
+                update_session_auth_hash(request, form.user)
+                # message
+                logout(request)
+                return redirect('accounts:login')
+            
+            else:
+                # message
+                return redirect('accounts:change')
+            
+        form = PasswordChangeForm(request)
+        content = {'form' : form}
+        
+        return render(request, 'accounts/change_password.html', content)
+
     else:
         return redirect('/')

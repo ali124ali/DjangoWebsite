@@ -23,7 +23,7 @@
         <h2>{{post.title}}</h2><br>
         <p><img src="{{post.image.url}}" alt="" width="100%" height="500"></p><br>
         <p>{{post.content}}</p>
-        <div class="pt-5">
+        <div class="pt-5"><hr>
           <!-- post info -->
           <p>Author: <a href="{% url 'blog:author' author_name=post.author.username %}">{{post.author}}</a></p>
           <p>View: {{post.view_count}}</p>
