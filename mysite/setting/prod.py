@@ -9,7 +9,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ali-dehkhodaei.ir', 'www.ali-dehkhodaei.ir']
 
 # INSTALLED_APPS = []
 
@@ -22,3 +22,14 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+STATIC_ROOT = '/home/alidehk1/public_html/static'
+MEDIA_ROOT = '/home/alidehk1/public_html/media'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'statics'
+]
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
